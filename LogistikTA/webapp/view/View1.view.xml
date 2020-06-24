@@ -1,0 +1,61 @@
+<mvc:View controllerName="TA.LogistikTA.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>Mitarbeiter}">
+					<IconTabBar id="iconTabBar" select=".onQuickFilter" expandable="false" headerBackgroundDesign="Transparent">
+						<items>
+							<IconTabFilter key="all" showAll="true" text="Alle Pakete"/>
+							<IconTabSeparator/>
+							<IconTabFilter/>
+						</items>
+						<content>
+							<Table id="table" width="auto" items="{ path: '/Packets', sorter: { path: 'ID', descending: false }, parameters: { 'expand': 'user' }}"
+								growing="true" growingScrollToLoad="true" updateFinished="onUpdateFinished">
+								<headerToolbar>
+									<Toolbar>
+										<SearchField id="searchField" search="onSearch" width="auto"></SearchField>
+										<Title id="tableHeader" text="Geben Sie ID-Nummer"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column id="idColumn">
+										<Text text="{i18n>ID_Nummer}" id="idColumntitle"/>
+									</Column>
+									<Column id="receiverColumn" hAlign="End">
+										<Text text="{i18n>Empfänger}" id="receivertitle"/>
+									</Column>
+									<Column id="adresseColumn" hAlign="End">
+										<Text text="{i18n>adresse}" id="adresstitle"/>
+									</Column>
+									<Column id="postzahlColumn" hAlign="End">
+										<Text text="{i18n>PLZ}" id="PLZtitle"/>
+									</Column>
+									<Column id="StatusColumn" hAlign="End">
+										<Text text="{i18n>Status}" id="Statustitle"/>
+									</Column>
+									<Column id="StockColumn" hAlign="End">
+										<Text text="{i18n>Tor}" id="Stocktitle"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem type="Navigation" press="handleListItemPress">
+										<cells>
+											<ObjectIdentifier title="{ID}" id="objectcells"/>
+											<Text text="{user/name}"/>
+											<Text text="{user/adresse}"/>
+											<Text text="{user/postzahl}"/>
+											<Text text="{status}"/>
+											<ObjectNumber number="{stock}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</content>
+					</IconTabBar>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

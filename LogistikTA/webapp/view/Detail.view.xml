@@ -1,0 +1,84 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:form="sap.ui.layout.form" xmlns="sap.m"
+	controllerName="TA.LogistikTA.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" showNavButton="true"
+		navButtonPress="handleNavButtonPress">
+		<semantic:titleHeading>
+			<Title text="PacketID: {ID}" id="titleID"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<FlexBox alignItems="Center" justifyContent="Start">
+				<FlexBox alignItems="Start">
+					<Panel backgroundDesign="Transparent">
+						<content>
+							<sap.ui.layout.form:Form xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" id="__form1">
+								<sap.ui.layout.form:formContainers>
+									<sap.ui.layout.form:FormContainer id="__container1">
+										<sap.ui.layout.form:formElements>
+											<sap.ui.layout.form:FormElement label="Tor" id="torelement">
+												<sap.ui.layout.form:fields>
+													<Input value="{stock}" width="50%" id="inputTor"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="ID" id="IDElement">
+												<sap.ui.layout.form:fields>
+													<Input value="{ID}" width="50%" id="inputID"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="PLZ" id="PLZElement">
+												<sap.ui.layout.form:fields>
+													<Input value="{user/postzahl}" width="50%" id="postzahlInput"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Status">
+												<sap.ui.layout.form:fields >
+													<ComboBox width="50%" id="statusform" items="{path: '/Status'}">
+														<core:Item key="{status}" text="{status}"/>
+													</ComboBox>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+											<sap.ui.layout.form:FormElement label="Notizen" id="notizenelement">
+												<sap.ui.layout.form:fields>
+													<Input value="{note}" id="inputnote"/>
+												</sap.ui.layout.form:fields>
+											</sap.ui.layout.form:FormElement>
+										</sap.ui.layout.form:formElements>
+									</sap.ui.layout.form:FormContainer>
+								</sap.ui.layout.form:formContainers>
+								<sap.ui.layout.form:layout>
+									<sap.ui.layout.form:ResponsiveGridLayout id="__layout1"/>
+								</sap.ui.layout.form:layout>
+							</sap.ui.layout.form:Form>
+						</content>
+					</Panel>
+				</FlexBox>
+				<Button text="Bestätigen" type="Accept" press="onUpdatePacket"/>
+			</FlexBox>
+		</semantic:headerContent>
+		<semantic:content>
+			<Panel class="sapUiNoContentPadding" id="panel11">
+				<content>
+					<form:SimpleForm title="Empfängerdaten" id="FormChange480_12120-1" minWidth="1024" maxContainerCols="2" editable="true"
+						layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+						<form:content>
+							<Label text="UserID: "/>
+							<Text text="{user/ID}"/>
+							<Label text="Name: "/>
+							<Text text="{user/name}"/>
+							<Label text="Vorname: "/>
+							<Text text="{user/vorname}"/>
+							<Label text="Adresse: "/>
+							<Text text="{user/adresse}"/>
+							<Label text="PLZ"/>
+							<Text text="{user/postzahl}" id="postzahl"/>
+							<Label text="Email"/>
+							<Text text="{user/email}"/>
+							<Label text="Telefonnummer"/>
+							<Text text="{user/teleNummer}"/>
+						</form:content>
+					</form:SimpleForm>
+					<Button text="Zurück" type="Emphasized" press="backButton"/>
+				</content>
+			</Panel>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>

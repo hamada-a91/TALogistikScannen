@@ -1,0 +1,146 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "TA.LogistikTA",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"CatalogService": {
+				"uri": "/mainService/odata/v2/CatalogService/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/CatalogService/metadata.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "TA.LogistikTA.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.65.6",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "TA.LogistikTA.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "CatalogService",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "TA.LogistikTA.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false,
+				"bypassed": {
+					"target": []
+				}
+			},
+			"routes": [{
+				"name": "",
+				"pattern": "",
+				"target": ["TargetView1"]
+			}, {
+				"name": "Detail",
+				"pattern": "detail/{ID}",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Detail"]
+			}, {
+				"name": "Worklist",
+				"pattern": "",
+				"titleTarget": "",
+				"greedy": false,
+				"target": []
+			}],
+			"targets": {
+				"TargetView1": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "View1",
+					"viewName": "View1",
+					"viewLevel": 1
+				},
+				"app": {
+					"viewType": "XML",
+					"viewName": "app"
+				},
+				"Detail": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "Detail",
+					"viewId": "2"
+				},
+				"App": {
+					"viewType": "XML",
+					"viewName": "App"
+				},
+				"Worklist": {
+					"viewType": "XML",
+					"viewName": "Worklist"
+				}
+			}
+		}
+	}
+}

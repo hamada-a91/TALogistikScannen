@@ -1,0 +1,20 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:sap="http://www.sap.com/Protocols/SAPData"
+	xmlns:ux="http://www.sap.com/Protocols/OData4SAP/UX" xmlns:gp="http://www.sap.com/Protocols/SAPData/GenericPlayer" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="CatalogService">
+			<EntityType Name="Packets">
+				<Key><PropertyRef Name="ID"/></Key><Property Name="ID" Type="Edm.Int32" Nullable="false"/><Property Name="status" Type="Edm.String"/><Property Name="stock" Type="Edm.Int32"/><Property Name="note" Type="Edm.String"/><Property Name="user_ID" Type="Edm.Int32"/><NavigationProperty Name="user" Relationship="CatalogService.Packets_user" FromRole="Packets" ToRole="Users"/></EntityType>
+			<EntityType Name="Users">
+				<Key><PropertyRef Name="ID"/></Key><Property Name="ID" Type="Edm.Int32" Nullable="false"/><Property Name="name" Type="Edm.String"/><Property Name="vorname" Type="Edm.String"/><Property Name="postzahl" Type="Edm.String"/><Property Name="adresse" Type="Edm.String"/><Property Name="email" Type="Edm.String"/><Property Name="teleNummer" Type="Edm.String"/><NavigationProperty Name="packets" Relationship="CatalogService.Packets_user" FromRole="Users" ToRole="Packets"/></EntityType>
+			<Association Name="Packets_user"><End Type="CatalogService.Packets" Multiplicity="*" Role="Packets"/><End Type="CatalogService.Users" Multiplicity="0..1" Role="Users"/>
+				<ReferentialConstraint>
+					<Principal Role="Users"><PropertyRef Name="ID"/></Principal>
+					<Dependent Role="Packets"><PropertyRef Name="user_ID"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true"><EntitySet Name="Packets" EntityType="CatalogService.Packets"/><EntitySet Name="Users" EntityType="CatalogService.Users"/>
+				<AssociationSet Name="Packets_user" Association="CatalogService.Packets_user"><End EntitySet="Packets" Role="Packets"/><End EntitySet="Users" Role="Users"/></AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
